@@ -69,7 +69,6 @@ while not done:
     for i in actors: i.update()
     a = np.array([i.x for i in actors])
     d_actors = np.linalg.norm(a - a[:, None], axis=-1)
-    print(d_actors)
     E = 0
     for i in range(len(actors)):
         actors[i].calc_next(d_actors[i], actors)
