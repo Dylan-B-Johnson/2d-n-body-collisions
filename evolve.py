@@ -10,12 +10,12 @@ import random
 # controls:
 # w/s (while mousing over circle): increase/decrease circle radius
 # a/d (while mousing over circle): decrease/increase circle speed
+# q/e: decrease/increase step size
 # up arrow/down arrow: increase/decrease all circle radii
 # left arrow/right arrow: decrease/increase all circle speeds
-
-act.h = 2
 n = 20
-screen_width, screen_height = 1440, 900
+screen_width, screen_height = 1920, 1080
+act.h = 2
 res = (screen_width, screen_height)
 pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -69,14 +69,14 @@ while not done:
     for i in actors: i.update()
     a = np.array([i.x for i in actors])
     d_actors = np.linalg.norm(a - a[:, None], axis=-1)
-    E = 0
+    # E = 0
     for i in range(len(actors)):
         actors[i].calc_next(d_actors[i], actors)
-        for j in range(i + 1, len(actors), 1):
-            E -= act.Actor.G / d_actors[i][j] * actors[i].chars['m'] * actors[j].chars['m']
-    for i in actors:
-        E+=0.5*i.v[0]**2+i.v[1]**2*i.chars['m']
-    print(E)
+    #     for j in range(i + 1, len(actors), 1):
+    #         E -= act.Actor.G / d_actors[i][j] * actors[i].chars['m'] * actors[j].chars['m']
+    # for i in actors:
+    #     E+=0.5*i.v[0]**2+i.v[1]**2*i.chars['m']
+    # print(E)  #All this E stuff was to see if energy is conserved: It's not
     pygame.display.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
