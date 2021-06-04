@@ -1,4 +1,3 @@
-# particle-simulator
 To Use:
 Run the evolve.py file. 
 Set n=[number of bodies you want to simulate].
